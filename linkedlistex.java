@@ -1,19 +1,59 @@
-import java.util.*;
-public class linkedlistEx {
+public class ArrayNode {
+    int[] data;
+    ArrayNode next;
+
+    // Constructor to initialize the array data and next pointer
+    public ArrayNode(int[] data) {
+        this.data = data;
+        this.next = null;
+    }
     public static void main(String[] args) {
-        LinkedList<String> name = new LinkedList<String>();
-        name.add("a");
-        name.add("b");
-        name.add("c");
-    System.out.println("after add data"+ " " + name);
-        //name.add("e");
-        name.add(0,"e");//0 คือตำแหน่ง กำหนดให้ e มาอยู่หน้าสุด
-        System.out.println("after add data and set point e to be in front" + " "+ name);
-        name.remove();//สามารถกำหนดตัวที่จะเอาออกได้
-        System.out.println("after Clear data  front in variable name" + " "+name );
-        name.set(1, "e");//กำหนดว่าจะเปลื่ยนตำแหน่งไหนจากนั้นใส่ข้อมูลไป
-        System.out.println("after set point" + " " + name);
-        name.get(1);
-        System.out.println("after get point" + " " + name);
+               LinkedListForArray list = new LinkedListForArray();
+        
+               // สร้างและเพิ่มข้อมูลลงใน linked list
+        	        int[] array1 = {1, 2, 3};
+       	        int[] array2 = {4, 5, 6};
+             int[] array3 = {7, 8};
+        	        list.append(array1);
+        	        list.append(array2);
+        	        list.append(array3);
+        	
+        	        // พิมพ์ linked list
+        	        list.printList();
+        	    }
+        	}
+
+  class LinkedListForArray {
+    ArrayNode head;
+
+    // คอนสตรักเตอร์เพื่อกำหนดค่าโหนดหัว
+    public LinkedListForArray() {
+        this.head = null;
+    }
+
+    // เมธอดเพิ่มโหนดอาร์เรย์ที่ส่วนท้ายของลิงก์ลิสต์
+    public void append(int[] data) {
+        ArrayNode newNode = new ArrayNode(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        ArrayNode current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = newNode;
+    }
+
+    // เมธอดพิมพ์ลิงก์ลิสต์
+    public void printList() {
+        ArrayNode current = head;
+        while (current != null) {
+            for (int value : current.data) {
+                System.out.print(value + " ");
+            }
+            System.out.println();
+            current = current.next;
+        }
     }
 }
